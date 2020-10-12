@@ -232,6 +232,10 @@ $ git branch -d 分支名
 ```
 $ git branch -D 分支名
 ```
+分支重命名
+```
+$ git branch -m 旧名 新名
+```
 
 ### 4.2 解决冲突
 
