@@ -77,7 +77,7 @@ $ git init
 
 * **Git Push**
   1. `git push origin master`远程分支被省略。
-  2. `git push origin : refs/for/master`本地分支被省略，等同于推送一个本地空分支到远程分支，相当于`git push origin –delete master`
+  2. `git push origin :refs/for/master`本地分支被省略，等同于推送一个本地空分支到远程分支，相当于`git push origin –delete master`
   3. `git push origin`如果当前分支与远程分支存在追踪关系，则本地分支和远程分支都可以省略，将当前分支推送到origin主机的对应分支。
   4. `git push`如果当前分支只有一个远程分支，那么主机名都可以省略，形如 `git push`，可以使用`git branch -r` ，查看远程的分支名。
   5. `refs/for` 的意义在于我们提交代码到服务器之后是需要经过code review 之后才能进行merge的，而`refs/heads` 不需要。
