@@ -31,6 +31,9 @@
   - [7.自定义Git](#7自定义git)
     - [7.1 忽略文件](#71-忽略文件)
     - [7.2 配置别名](#72-配置别名)
+  - [8.搭建 Git 服务器](#8搭建-git-服务器)
+    - [8.1 Windows系统](#81-windows系统)
+    - [8.2 Linux系统](#82-linux系统)
 
 ***
 
@@ -394,6 +397,51 @@ git reset HEAD test.py
 
 配置Git时，加上`--global`则针对当前用户起作用，不加只对当前仓库起作用。
 配置文件放在`.git/config`
+
+***
+
+## 8.搭建 Git 服务器
+
+### 8.1 Windows系统
+
+:heart:
+
+### 8.2 Linux系统
+
+假设已有sudo权限
+1. 安装git
+   ```
+   $ sudo apt-get install git
+   ```
+2. 创建`Git`用户，用来运行`Git`服务
+   ```
+   $ sudo adduser git
+   ```
+3. 创建证书登陆
+   收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。
+4. 初始化`Git`仓库
+   选定一个目录作为`Git`仓库，假定是`/srv/sample.git`，在`/srv`目录下输入：
+   ```
+   $ sudo git init --bare sample.git
+   ```
+   `Git`会创建一个裸仓库，没有工作区，，因为服务器上的`Git`仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的`Git`仓库通常都以`.git`结尾。然后，把owner改为git：
+   ```
+   $ sudo chown -R git:git sample.git
+   ```
+5. 禁用shell登录
+   出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑`/etc/passwd`文件完成。找到类似下面的一行：
+   ```
+   git:x:1001:1001:,,,:/home/git:/bin/bash
+   ```
+   改为：
+   ```
+   git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+   ```
+6. 克隆远程仓库
+   现在可以通过`git colne`命令克隆远程仓库：
+   ```
+   $ git clone git@sever:/srv/sample.git
+   ```
 
 ***
 
