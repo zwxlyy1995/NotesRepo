@@ -96,7 +96,7 @@ $ git init
 ### 2.1 版本回退
 
 * `git log`可以查看从最近到最远的commit日志。
-* `git reset --hard 版本号`，在git中使用`HEAD`代表当前版本，`HEAD^`代表上个版本，`HEAD^^`代表上上个版本，以此类推；或者直接写commit id。
+* `git reset --hard 版本号`，在git中使用`HEAD`代表当前版本，`HEAD^`代表上个版本，`HEAD^^`代表上上个版本，以此类推；或者直接写**commit id**。
 * `git reflog`可以提供每一次命令的记录，从里面查找因为错误回退版本丢失的commit版本号。
 
 ###2.2工作区和版本库
